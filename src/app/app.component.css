@@ -1,0 +1,10 @@
+.container {
+    background-color: rgb(24, 24, 24);
+    font-family: "Manrope", sans-serif;
+    color: aliceblue;
+    display: grid;
+    height: 100vh; /* La altura completa de la ventana */
+    grid-template-rows: 1fr 0 3fr; /* 1/4 para el header, 3/4 para el router-outlet */
+    align-items: center; /* Alineación vertical centrada */
+    justify-items: center; /* Alineación horizontal centrada */
+}

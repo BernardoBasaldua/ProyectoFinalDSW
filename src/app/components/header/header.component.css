@@ -1,0 +1,13 @@
+.titles {
+    font-family: "Bebas Neue", serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 1.5px;
+    padding: 80px 20px 30px 20px;
+    text-align: center;
+}
+
+.titles h1 {
+    color: rgb(22, 130, 253);
+    font-size: 45px;
+}
