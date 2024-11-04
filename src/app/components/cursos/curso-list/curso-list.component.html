@@ -1,4 +1,21 @@
 <app-nav-header></app-nav-header>
+<div class="container1">
+  <div class="search-container">
+    <label for="fechaFinBusqueda">Fecha de Fin:</label>
+    <input class="input" type="date" id="fechaFinBusqueda" [(ngModel)]="fechaFinBusqueda" />
+  
+    <button (click)="buscarCursosPorFechaFin()">Buscar Cursos</button>
+  </div>
+  <div class="search-container">
+    <label for="docenteId">Alumnos del Docente:</label>
+    <select class="input" id="docenteId" [(ngModel)]="docenteId" required>
+      <option *ngFor="let docente of docentes" [ngValue]="docente.id">{{ docente.nombre }}</option>
+    </select>
+  
+    <button (click)="findAlumnosByDocente()">Buscar</button>
+  </div>
+</div>
+
 <div *ngIf="cursos.length > 0; else noData" class="table-container">
     <table>
       <thead>
@@ -37,14 +54,25 @@
       </tbody>
     </table>
 </div>
-  
-  
-  <ng-template #noData class="no-data">
-    <p>No hay cursos disponibles.</p>
-  </ng-template>
+    
+<ng-template #noData class="no-data">
+  <p>No hay cursos disponibles.</p>
+</ng-template>
   
 <div class="button-container">
     <div class="item-container add"><a routerLink="/cursos-add" class="item-link" id="add-item">Agregar curso</a></div>
     <div class="item-container volver"><a routerLink="/menu" class="item-link" id="back-item">Volver</a></div>
 </div>
 
+<div *ngIf="alumnosVigentes.length > 0; else noAlumnos" class="alumnos-container">
+  <h3>Alumnos Vigentes</h3>
+  <ul>
+    <li *ngFor="let alumno of alumnosVigentes">
+      <span style="font-weight: bold;">ID:</span>   {{ alumno.id }} - <span style="font-weight: bold;">Nombre:</span>   {{ alumno.nombre }}
+    </li>
+  </ul>
+</div>
+
+<ng-template #noAlumnos id="noAlumnos">
+  <p>No hay alumnos vigentes para el docente seleccionado.</p>
+</ng-template>

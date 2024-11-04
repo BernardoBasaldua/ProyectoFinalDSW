@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Curso } from '../models/curso.model';
+import { Alumno } from '../models/alumno.model';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,14 @@ export class CursoService {
   //Delete por id
   public deleteById(id: number): Observable<void> {
     return this.http.delete<void>(`${this.urlApiCurso}/delete/${id}`);
+  }
+
+  findCursosByFechaFin(fechaFin: string): Observable<Curso[]> {
+    return this.http.get<Curso[]>(`${this.urlApiCurso}/fecha-fin/${fechaFin}`);
+  }
+
+  findAlumnosByCursosVigentes(docenteId: number): Observable<Alumno[]> {
+    return this.http.get<Alumno[]>(`${this.urlApiCurso}/vigentes/docente/${docenteId}/alumnos`)
   }
 }
 
