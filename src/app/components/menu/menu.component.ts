@@ -7,12 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [RouterLink],
+  imports: [HttpClientModule, RouterLink],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
-export class MenuComponent implements OnInit{
-  data: any = []
+export class MenuComponent{
+  /*data: any = []
 
   constructor(private cursoService: CursoService) {}
 
@@ -30,5 +30,5 @@ export class MenuComponent implements OnInit{
 
   public guardarItem(item: Curso) {
     this.cursoService.setItemSeleccionado(item);
-  }
+  }*/
 }

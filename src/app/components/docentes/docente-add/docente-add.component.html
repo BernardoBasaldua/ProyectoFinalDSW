@@ -1,0 +1,21 @@
+<app-nav-header></app-nav-header>
+<div class="add-container">
+    <div class="form"> 
+        <!--
+        <div class="input-container">
+            <label for="id">Id</label>
+            <input class="input" name="id" id="id" type="number" [(ngModel)]="nuevoDocente.id">
+        </div>
+        -->
+        <div class="input-container">
+            <label for="nombre">Nombre</label>
+            <input class="input" name="nombre" id="nombre" type="text" [(ngModel)]="nuevoDocente.nombre" autofocus>
+        </div>
+        <div class="input-container">
+            <label for="legajo">Legajo</label>
+            <input class="input" name="legajo" id="legajo" type="number" [(ngModel)]="nuevoDocente.legajo">
+        </div>
+        <button class="item-link" id="add-item" (click)="agregarDocente()">Agregar docente</button>
+    </div>
+    <a class="item-link" id="back-item" routerLink="/docentes">Volver</a>
+</div>

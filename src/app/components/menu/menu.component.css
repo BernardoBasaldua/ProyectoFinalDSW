@@ -14,6 +14,25 @@
     background-color: rgb(22, 130, 253);
 }
 
+/*
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /*padding: 100px 50px;*/
+    /*border-radius: 10px;
+}
+
+.item-container {
+    border-radius: 5px;
+    width: 350px;
+    height: 50px;
+    border: 2px solid rgb(33, 33, 33);
+    background-color: rgb(22, 130, 253);
+}
+*/
+
 .item-link {
     font-weight: bold;
     width: 100%;
@@ -27,7 +46,7 @@
 }
 
 .item-container:hover {
-    background-color: rgb(209, 209, 209);
+    background-color: rgb(79, 161, 255);
     transition: .15s ease-in;
 }
 

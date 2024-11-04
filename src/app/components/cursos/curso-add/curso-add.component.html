@@ -1,0 +1,46 @@
+<app-nav-header></app-nav-header>
+<div class="add-container">
+    <div class="form"> 
+        <fieldset>
+            <legend>Descripción del curso</legend>
+            <div class="input-container">
+                <label for="tema">Tema</label>
+                <select class="input" name="tema" id="tema" [(ngModel)]="nuevoCurso.tema" required autofocus>
+                    <option *ngFor="let tema of temas" [ngValue]="tema">{{ tema.id }} - {{ tema.nombre }}</option>
+                </select>
+            </div>
+            <div class="input-container">
+                <label for="docente">Docente</label>
+                <select class="input" name="docente" id="docente" [(ngModel)]="nuevoCurso.docente">
+                    <option *ngFor="let docente of docentes" [ngValue]="docente">{{ docente.id }} - {{ docente.nombre }}</option>
+                </select>
+            </div>
+            <div class="input-container">
+                <label for="precio">Precio</label>
+                <input class="input" name="precio" id="precio" type="number" [(ngModel)]="nuevoCurso.precio">
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Duración</legend>
+            <div class="input-container">
+                <label for="fInicio">Fecha de Inicio</label>
+                <input class="input" name="fInicio" id="fInicio" type="date" [(ngModel)]="nuevoCurso.fechaInicio">
+            </div>
+            <div class="input-container">
+                <label for="fFin">Fecha de Finalización</label>
+                <input class="input" name="fFin" id="fFin" type="date" [(ngModel)]="nuevoCurso.fechaFin">
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Participantes</legend>
+            <div class="input-container">
+                <label for="alumnos">Alumnos</label>
+                <select class="input" name="alumnos" id="alumnos" [(ngModel)]="nuevoCurso.alumnos" multiple>
+                    <option *ngFor="let alumno of alumnos" [ngValue]="alumno">{{ alumno.id }} - {{ alumno.nombre }}</option>
+                </select>
+            </div>
+        </fieldset>
+        <button class="item-link" id="add-item" (click)="agregarCurso()">Agregar Curso</button>
+    </div>
+    <a class="item-link" id="back-item" routerLink="/cursos">Volver</a>
+</div>

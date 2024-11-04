@@ -1,0 +1,37 @@
+<app-nav-header></app-nav-header>
+<div *ngIf="temas.length > 0; else noData" class="table-container">
+    <table>
+      <thead>
+        <tr class="head-row">
+          <th class="head-columns">ID</th>
+          <th class="head-columns">Nombre</th>
+          <th class="head-columns">Descripción</th>
+          <th class="head-columns"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tema of temas">
+          <td class="body-columns">{{ tema.id }}</td>
+          <td class="body-columns">{{ tema.nombre }}</td>
+          <td class="body-columns">{{ tema.descripcion }}</td>
+          <td class="body-columns">
+            <a routerLink="/temas-details" (click)="guardarItem(tema)"><i class="fa-solid fa-eye blue"></i></a>
+            <!--
+            <a href=""><i class="fa-solid fa-pen blue"></i></a>
+            -->
+            <a href="" id="deleteButton" (click)="eliminarTema(tema.id); $event.preventDefault()"><i class="fa-solid fa-trash red"></i></a>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+  
+  
+  <ng-template #noData class="no-data">
+    <p>No hay temas disponibles.</p>
+  </ng-template>
+  
+<div class="button-container">
+    <div class="item-container add"><a routerLink="/temas-add" class="item-link" id="add-item">Agregar tema</a></div>
+    <div class="item-container volver"><a routerLink="/menu" class="item-link" id="back-item">Volver</a></div>
+</div>

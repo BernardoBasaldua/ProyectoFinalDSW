@@ -1,0 +1,58 @@
+<app-nav-header></app-nav-header>
+<div class="add-container">
+    <div class="form" *ngIf="alumno"> 
+        <div class="input-container">
+            <label for="id">ID:</label>
+            <input class="input" name="id" id="id" type="number" [placeholder]="alumno.id" disabled="">
+        </div>
+        <div class="input-container">
+            <label for="nombre">Nombre:</label>
+            <input class="input" name="nombre" id="nombre" type="text" *ngIf="!editMode" [placeholder]="alumno.nombre" [(ngModel)]="alumno.nombre" disabled>
+            <input class="input" name="nombre" id="nombre" type="text" *ngIf="editMode" [placeholder]="alumno.nombre" [(ngModel)]="alumno.nombre" autofocus>
+        </div>
+        <div class="input-container">
+            <label for="fNac">Fecha de nacimiento:</label>
+            <input class="input" name="fNac" id="fNac" type="date" *ngIf="!editMode" [placeholder]="alumno.fechaNacimiento" [(ngModel)]="alumno.fechaNacimiento" disabled>
+            <input class="input" name="fNac" id="fNac" type="date" *ngIf="editMode" [placeholder]="alumno.fechaNacimiento" [(ngModel)]="alumno.fechaNacimiento">
+        </div>
+        <div class="actions-container">
+          <!--
+          <a href="" class="item-link" id="delete-item" (click)="eliminarAlumno(alumno.id); $event.preventDefault()">Eliminar</a>
+          -->
+          <a href="#" id="put-item" class="item-link" (click)="toggleEditMode($event)">
+            {{ editMode ? 'Guardar' : 'Modificar' }}
+          </a>
+        </div>
+    </div>
+    <div class="item-container volver"><a routerLink="/alumnos" class="item-link" id="back-item">Volver</a></div>
+</div>
+
+<!--<div class="body-container">
+  <div *ngIf="alumno" class="info-grid">
+    <div class="label">ID:</div>
+    <div class="value">{{ alumno.id }}</div>
+  
+    <div class="label">Nombre:</div>
+    <div class="value" *ngIf="!editMode">{{ alumno.nombre }}</div>
+    <div *ngIf="editMode" class="value">
+      <input [(ngModel)]="alumno.nombre" placeholder="Nombre" />
+    </div>
+  
+    <div class="label">Fecha de Nacimiento:</div>
+    <div class="value" *ngIf="!editMode">{{ alumno.fechaNacimiento }}</div>
+    <div *ngIf="editMode" class="value">
+      <input [(ngModel)]="alumno.fechaNacimiento" placeholder="Fecha de nacimiento" type="date" />
+    </div>
+  </div>
+    
+    <div class="actions-container">
+      <!--
+      <a href="" class="item-link" id="delete-item" (click)="eliminarAlumno(alumno.id); $event.preventDefault()">Eliminar</a>
+      -->
+      <!--
+      <a href="#" id="put-item" class="item-link" (click)="toggleEditMode($event)">
+        {{ editMode ? 'Guardar' : 'Modificar' }}
+      </a>
+    </div>
+    <div class="item-container volver"><a routerLink="/alumnos" class="item-link" id="back-item">Volver</a></div>
+</div>-->

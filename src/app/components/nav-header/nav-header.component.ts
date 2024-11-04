@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-curso-add',
+  selector: 'app-nav-header',
   standalone: true,
   imports: [RouterLink],
-  templateUrl: './curso-add.component.html',
-  styleUrl: './curso-add.component.css'
+  templateUrl: './nav-header.component.html',
+  styleUrl: './nav-header.component.css'
 })
-export class CursoAddComponent {
+export class NavHeaderComponent {
 
 }

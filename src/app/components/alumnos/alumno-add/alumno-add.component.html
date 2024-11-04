@@ -1,0 +1,21 @@
+<app-nav-header></app-nav-header>
+<div class="add-container">
+    <div class="form"> 
+        <!--
+        <div class="input-container">
+            <label for="id">Id</label>
+            <input class="input" name="id" id="id" type="number" [(ngModel)]="nuevoAlumno.id">
+        </div>
+        -->
+        <div class="input-container">
+            <label for="nombre">Nombre</label>
+            <input class="input" name="nombre" id="nombre" type="text" [(ngModel)]="nuevoAlumno.nombre" autofocus>
+        </div>
+        <div class="input-container">
+            <label for="fNac">Fecha de nacimiento</label>
+            <input class="input" name="fNac" id="fNac" type="date" [(ngModel)]="nuevoAlumno.fechaNacimiento">
+        </div>
+        <button class="item-link" id="add-item" (click)="agregarAlumno()">Agregar alumno</button>
+    </div>
+    <a class="item-link" id="back-item" routerLink="/alumnos">Volver</a>
+</div>

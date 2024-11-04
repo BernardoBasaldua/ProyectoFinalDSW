@@ -1,0 +1,57 @@
+<app-nav-header></app-nav-header>
+<div class="add-container">
+    <div class="form" *ngIf="tema"> 
+        <div class="input-container">
+            <label for="id">ID:</label>
+            <input class="input" name="id" id="id" type="number" [placeholder]="tema.id" disabled="">
+        </div>
+        <div class="input-container">
+            <label for="nombre">Nombre:</label>
+            <input class="input" name="nombre" id="nombre" type="text" *ngIf="!editMode" [placeholder]="tema.nombre" [(ngModel)]="tema.nombre" disabled>
+            <input class="input" name="nombre" id="nombre" type="text" *ngIf="editMode" [placeholder]="tema.nombre" [(ngModel)]="tema.nombre" autofocus>
+        </div>
+        <div class="input-container">
+            <label for="fNac">Descripción:</label>
+            <textarea id="descripcion" class="input" name="fNac" id="fNac" *ngIf="!editMode" [placeholder]="tema.descripcion" [(ngModel)]="tema.descripcion" disabled></textarea>
+            <textarea id="descripcion" class="input" name="fNac" id="fNac" *ngIf="editMode" [placeholder]="tema.descripcion" [(ngModel)]="tema.descripcion"></textarea>
+        </div>
+        <div class="actions-container">
+          <!--
+          <a href="" class="item-link" id="delete-item" (click)="eliminarAlumno(alumno.id); $event.preventDefault()">Eliminar</a>
+          -->
+          <a href="#" id="put-item" class="item-link" (click)="toggleEditMode($event)">
+            {{ editMode ? 'Guardar' : 'Modificar' }}
+          </a>
+        </div>
+    </div>
+    <div class="item-container volver"><a routerLink="/temas" class="item-link" id="back-item">Volver</a></div>
+</div>
+
+<!--<div class="body-container">
+  <div *ngIf="tema" class="info-grid">
+    <div class="label">ID:</div>
+    <div class="value">{{ tema.id }}</div>
+  
+    <div class="label">Nombre:</div>
+    <div class="value" *ngIf="!editMode">{{ tema.nombre }}</div>
+    <div *ngIf="editMode" class="value">
+      <input [(ngModel)]="tema.nombre" placeholder="Nombre" autofocus/>
+    </div>
+  
+    <div class="label">Descripción:</div>
+    <div class="value" *ngIf="!editMode">{{ tema.descripcion }}</div>
+    <div *ngIf="editMode" class="value">
+      <textarea [(ngModel)]="tema.descripcion" placeholder="Descripcion"></textarea>
+    </div>
+  </div>
+    
+  <div class="actions-container">
+    <!--
+    <a href="" class="item-link" id="delete-item" (click)="eliminarAlumno(alumno.id); $event.preventDefault()">Eliminar</a>
+    -->
+    <!--<a href="#" id="put-item" class="item-link" (click)="toggleEditMode($event)">
+      {{ editMode ? 'Guardar' : 'Modificar' }}
+    </a>
+  </div>
+  <div class="item-container volver"><a routerLink="/temas" class="item-link" id="back-item">Volver</a></div>
+</div>-->

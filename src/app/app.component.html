@@ -1,4 +1,7 @@
 <div class="container">
-  <app-header></app-header>
+  <div class="titles">
+    <h1>{{ currentTitle }}</h1>
+    <h2 *ngIf="showSubtitle">BERNARDO BASALDÚA MOLINA</h2>
+  </div>
   <router-outlet></router-outlet>
 </div>

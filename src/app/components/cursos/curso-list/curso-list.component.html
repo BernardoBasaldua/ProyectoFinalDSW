@@ -1,0 +1,50 @@
+<app-nav-header></app-nav-header>
+<div *ngIf="cursos.length > 0; else noData" class="table-container">
+    <table>
+      <thead>
+        <tr class="head-row">
+          <th class="head-columns">ID</th>
+          <th class="head-columns">Tema</th>
+          <th class="head-columns">Fecha de Inicio</th>
+          <th class="head-columns">Fecha de Finalización</th>
+          <th class="head-columns">Docente</th>
+          <th class="head-columns">Precio</th>
+          <th class="head-columns">Alumnos</th>
+          <th class="head-columns"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let curso of cursos">
+          <td class="body-columns">{{ curso.id }}</td>
+          <td class="body-columns">{{ curso.tema.nombre }}</td>
+          <td class="body-columns">{{ curso.fechaInicio | date }}</td>
+          <td class="body-columns">{{ curso.fechaFin | date }}</td>
+          <td class="body-columns">{{ curso.docente.nombre }}</td>
+          <td class="body-columns">{{ curso.precio | currency }}</td>
+          <td class="body-columns">
+            <span *ngFor="let alumno of curso.alumnos; let i = index">
+              {{ alumno.nombre }}<span *ngIf="i < curso.alumnos.length - 1">, </span>
+            </span>
+          </td>
+          <td class="body-columns">
+            <a routerLink="/cursos-details" (click)="guardarItem(curso)"><i class="fa-solid fa-eye blue"></i></a>
+            <!--
+            <a href=""><i class="fa-solid fa-pen blue"></i></a>
+            -->
+            <a href="" id="deleteButton" (click)="eliminarCurso(curso.id); $event.preventDefault()"><i class="fa-solid fa-trash red"></i></a>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+  
+  
+  <ng-template #noData class="no-data">
+    <p>No hay cursos disponibles.</p>
+  </ng-template>
+  
+<div class="button-container">
+    <div class="item-container add"><a routerLink="/cursos-add" class="item-link" id="add-item">Agregar curso</a></div>
+    <div class="item-container volver"><a routerLink="/menu" class="item-link" id="back-item">Volver</a></div>
+</div>
+

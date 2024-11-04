@@ -1,0 +1,37 @@
+<app-nav-header></app-nav-header>
+<div *ngIf="alumnos.length > 0; else noData" class="table-container">
+    <table>
+      <thead>
+        <tr class="head-row">
+          <th class="head-columns">ID</th>
+          <th class="head-columns">Nombre</th>
+          <th class="head-columns">Fecha de nacimiento</th>
+          <th class="head-columns"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let alumno of alumnos">
+          <td class="body-columns">{{ alumno.id }}</td>
+          <td class="body-columns">{{ alumno.nombre }}</td>
+          <td class="body-columns">{{ alumno.fechaNacimiento }}</td>
+          <td class="body-columns">
+            <a routerLink="/alumnos-details" (click)="guardarItem(alumno)"><i class="fa-solid fa-eye blue"></i></a>
+            <!--
+            <a href="" id="putButton"><i class="fa-solid fa-pen blue"></i></a>
+            -->
+            <a href="" id="deleteButton" (click)="eliminarAlumno(alumno.id); $event.preventDefault()"><i class="fa-solid fa-trash red"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+  
+  
+  <ng-template #noData class="no-data">
+    <p>No hay alumnos disponibles.</p>
+  </ng-template>
+  
+<div class="button-container">
+    <div class="item-container add"><a routerLink="/alumnos-add" class="item-link" id="add-item">Agregar alumno</a></div>
+    <div class="item-container volver"><a routerLink="/menu" class="item-link" id="back-item">Volver</a></div>
+</div>

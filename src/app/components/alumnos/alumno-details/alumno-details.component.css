@@ -1,0 +1,126 @@
+.add-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  width: 550px;
+  background-color: rgb(28, 28, 28);
+  border: 3px solid white;
+  border-radius: 8px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+fieldset {
+  padding: 20px;
+  background-color: rgb(32, 32, 32);
+  border-radius: 6px;
+  margin-bottom: 35px;
+}
+
+legend {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.input-container {
+  margin: 18px 10px;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  color: black;
+  background-color: rgb(232, 232, 232);
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  width: 100%;
+  height: 32px;
+  border-radius: 4px;
+  padding: 3px;
+  box-sizing: border-box;
+  border: none;
+}
+
+.input:focus {
+  outline-color: rgb(22, 130, 253);
+}
+
+#alumnos {
+  height: 100px;
+}
+
+#precio {
+  width: 150px;
+}
+
+.actions-container {
+  align-self: center;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.item-link {
+  width: 350px;
+  height: 40px;
+  margin: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: "Manrope", sans-serif;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#put-item {
+  background-color: rgb(22, 130, 253);
+  border-style: none;
+  align-self: center;
+  text-decoration: none;
+  align-self: center;
+  color: black;
+}
+
+#put-item:hover {
+  background-color: rgb(79, 161, 255);
+  border-color: rgb(79, 161, 255);
+  transition: .15s ease-in;
+}
+
+.item.container {
+  width: 300px;
+}
+
+#back-item {
+  background-color: rgb(200, 200, 200);
+  border: 2px solid rgb(22, 130, 253);
+  color: black;
+  width: 100px;
+  text-decoration: none;
+}
+
+#back-item:hover {
+  background-color: rgb(232, 232, 232);
+  transition: .15s ease-in;
+  border-color: rgb(79, 161, 255);
+}
+
+#delete-item {
+  background-color: rgb(224, 22, 22);
+}
+
+#delete-item:hover {
+  background-color: rgb(255, 0, 0);
+  transition: .15s ease-in;
+}

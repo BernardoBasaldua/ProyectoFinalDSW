@@ -1,0 +1,183 @@
+<app-nav-header></app-nav-header>
+<div class="add-container">
+    <div class="form" *ngIf="curso"> 
+        <fieldset>
+            <legend>Descripción del curso</legend>
+            <div class="input-container">
+              <label for="id">ID:</label>
+              <input class="input" name="id" id="id" type="number" [placeholder]="curso.id" disabled="">
+            </div>
+            <div class="input-container">
+                <label for="tema">Tema</label>
+                <div class="false input" *ngIf="!editMode">{{ curso.tema.nombre }}</div>
+                <select class="input" name="tema" id="tema" *ngIf="editMode" [(ngModel)]="curso.tema" required autofocus>
+                  <option *ngFor="let tema of temas" [ngValue]="tema">{{ tema.id }} - {{ tema.nombre }}</option>
+              </select>
+            </div>
+            <div class="input-container">
+                <label for="docente">Docente</label>
+                <div class="false input" *ngIf="!editMode">{{ curso.docente.nombre }}</div>
+                <select class="input" name="docente" id="docente" *ngIf="editMode" [(ngModel)]="curso.docente">
+                    <option *ngFor="let docente of docentes" [ngValue]="docente">{{ docente.id }} - {{ docente.nombre }}</option>
+                </select>
+            </div>
+            <div class="input-container">
+                <label for="precio">Precio</label>
+                <input class="input" name="precio" id="precio" type="number" *ngIf="!editMode" [placeholder]="curso.precio" [(ngModel)]="curso.precio" disabled="">
+                <input class="input" name="precio" id="precio" type="number" *ngIf="editMode" [placeholder]="curso.precio" [(ngModel)]="curso.precio">
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Duración</legend>
+            <div class="input-container">
+                <label for="fInicio">Fecha de Inicio</label>
+                <input class="input" name="fInicio" id="fInicio" type="date" *ngIf="!editMode" [placeholder]="curso.fechaInicio" [(ngModel)]="curso.fechaInicio" disabled="">
+                <input class="input" name="fInicio" id="fInicio" type="date" *ngIf="editMode" [placeholder]="curso.fechaInicio" [(ngModel)]="curso.fechaInicio">
+            </div>
+            <div class="input-container">
+                <label for="fFin">Fecha de Finalización</label>
+                <input class="input" name="fFin" id="fFin" type="date" *ngIf="!editMode" [placeholder]="curso.fechaFin" [(ngModel)]="curso.fechaFin" disabled="">
+                <input class="input" name="fFin" id="fFin" type="date" *ngIf="editMode" [placeholder]="curso.fechaFin" [(ngModel)]="curso.fechaFin">
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Participantes</legend>
+            <div class="input-container">
+                <label for="alumnos">Alumnos</label>
+                <div class="false input" id="alumnos-actuales" *ngIf="!editMode">
+                  <span *ngFor="let alumno of curso.alumnos; let i = index">
+                      {{ alumno.nombre }}<span *ngIf="i < curso.alumnos.length - 1">, </span>
+                  </span>
+                </div>
+                <select class="input" name="alumnos" id="alumnos" *ngIf="editMode" [(ngModel)]="curso.alumnos" multiple>
+                    <option *ngFor="let alumno of alumnos" [ngValue]="alumno">{{ alumno.id }} - {{ alumno.nombre }}</option>
+                </select>
+            </div>
+        </fieldset>
+        <div class="actions-container">
+          <!--
+          <a href="" class="item-link" id="delete-item" (click)="eliminarAlumno(alumno.id); $event.preventDefault()">Eliminar</a>
+          -->
+          <a href="#" id="put-item" class="item-link" (click)="toggleEditMode($event)">
+            {{ editMode ? 'Guardar' : 'Modificar' }}
+          </a>
+        </div>
+    </div>
+    <div class="item-container volver"><a routerLink="/cursos" class="item-link" id="back-item">Volver</a></div>
+</div>
+
+<!--<app-nav-header></app-nav-header>
+<div class="body-container">
+    <div *ngIf="curso" class="info-grid">
+      <div class="label">ID:</div>
+      <div class="value">{{ curso.id }}</div>
+    
+      <div class="label">Tema:</div>
+      <div class="value" *ngIf="!editMode">{{ curso.tema.nombre }}</div>
+      <div *ngIf="editMode" class="value">
+        <select class="input" name="tema" id="tema" [(ngModel)]="curso.tema" required>
+                <option *ngFor="let tema of temas" [ngValue]="tema">{{ tema.id }} - {{ tema.nombre }}</option>
+        </select>
+      </div>
+    
+      <div class="label">Fecha de Inicio:</div>
+      <div class="value" *ngIf="!editMode">{{ curso.fechaInicio }}</div>
+      <div *ngIf="editMode" class="value">
+        <input [(ngModel)]="curso.fechaInicio" placeholder="Fecha de inicio" type="date" />
+      </div>
+
+      <div class="label">Fecha de Finalización:</div>
+      <div class="value" *ngIf="!editMode">{{ curso.fechaFin }}</div>
+      <div *ngIf="editMode" class="value">
+        <input [(ngModel)]="curso.fechaFin" placeholder="Fecha de finalización" type="date" />
+      </div>
+
+      <div class="label">Docente:</div>
+      <div class="value" *ngIf="!editMode">{{ curso.docente.nombre }}</div>
+      <div *ngIf="editMode" class="value">
+        <select class="input" name="docente" id="docente" [(ngModel)]="curso.docente" required>
+            <option *ngFor="let docente of docentes" [ngValue]="docente">{{ docente.id }} - {{ docente.nombre }}</option>
+        </select>
+      </div>
+
+      <div class="label">Precio:</div>
+      <div class="value" *ngIf="!editMode">{{ curso.precio }}</div>
+      <div *ngIf="editMode" class="value">
+        <input [(ngModel)]="curso.precio" placeholder="Nombre" />
+      </div>
+
+      <div class="label">Alumnos:</div>
+      <div class="value" *ngIf="!editMode">
+        <span *ngFor="let alumno of curso.alumnos; let i = index">
+            {{ alumno.nombre }}<span *ngIf="i < curso.alumnos.length - 1">, </span>
+        </span>
+      </div>
+      <div *ngIf="editMode" class="value">
+        <select class="input" name="alumno" id="alumno" [(ngModel)]="curso.alumnos" required multiple>
+            <option *ngFor="let alumno of alumnos" [ngValue]="alumno">{{ alumno.id }} - {{ alumno.nombre }}</option>
+        </select>
+      </div>
+    </div>
+    -->
+    <!--<table>
+        <thead>
+          <tr class="head-row">
+            <th class="head-columns">ID</th>
+            <th class="head-columns">Tema</th>
+            <th class="head-columns">Fecha de Inicio</th>
+            <th class="head-columns">Fecha de Finalización</th>
+            <th class="head-columns">Docente</th>
+            <th class="head-columns">Precio</th>
+            <th class="head-columns">Alumnos</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="curso">
+                <td class="body-columns">{{ curso.id }}</td>
+                <td class="body-columns">
+                    <div class="value" *ngIf="!editMode">{{ curso.tema.nombre }}</div>
+                    <div *ngIf="editMode" class="value">
+                        <select class="input" name="tema" id="tema" [(ngModel)]="curso.tema" required>
+                                <option *ngFor="let tema of temas" [ngValue]="tema">{{ tema.id }} - {{ tema.nombre }}</option>
+                        </select>
+                    </div>
+                </td>
+                <td class="body-columns">{{ curso.fechaInicio | date }}</td>
+                <td class="body-columns">{{ curso.fechaFin | date }}</td>
+                <td class="body-columns">
+                    <div class="value" *ngIf="!editMode">{{ curso.docente.nombre }}</div>
+                    <div *ngIf="editMode" class="value">
+                        <select class="input" name="docente" id="docente" [(ngModel)]="curso.docente" required>
+                            <option *ngFor="let docente of docentes" [ngValue]="docente">{{ docente.id }} - {{ docente.nombre }}</option>
+                        </select>
+                    </div>
+                </td>
+                <td class="body-columns">{{ curso.precio | currency }}</td>
+                <td class="body-columns">
+                    <div class="value" *ngIf="!editMode">
+                        <span *ngFor="let alumno of curso.alumnos; let i = index">
+                            {{ alumno.nombre }}<span *ngIf="i < curso.alumnos.length - 1">, </span>
+                        </span>
+                    </div>
+                    <div *ngIf="editMode" class="value">
+                        <select class="input" name="alumno" id="alumno" [(ngModel)]="curso.alumnos" required multiple>
+                            <option *ngFor="let alumno of alumnos" [ngValue]="alumno">{{ alumno.id }} - {{ alumno.nombre }}</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+            
+    <div class="actions-container">
+        <!--
+        <a href="" class="item-link" id="delete-item" (click)="eliminarAlumno(alumno.id); $event.preventDefault()">Eliminar</a>
+        -->
+        <!--<a href="#" id="put-item" class="item-link" (click)="toggleEditMode($event)">
+            {{ editMode ? 'Guardar' : 'Modificar' }}
+        </a>
+    </div>
+    <div class="item-container volver">
+        <a routerLink="/cursos" class="item-link" id="back-item">Volver</a>
+    </div>
+</div>-->

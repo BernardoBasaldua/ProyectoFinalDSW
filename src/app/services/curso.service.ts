@@ -8,10 +8,12 @@ import { Curso } from '../models/curso.model';
 })
 export class CursoService {
   //ponemos la url de la api
-  private urlApiCurso = 'http://localhost:8080/api/curso';
+  private urlApiCurso = 'http://localhost:8080/api/cursos';
   itemSeleccionado: any;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+    console.log("CursoService inicializado");  // Verificación de constructor
+  }
 
   setItemSeleccionado(item: any) {
     this.itemSeleccionado = item;;
@@ -26,30 +28,16 @@ export class CursoService {
   public getById(id: any): Observable<Curso> {
     return this.http.get<Curso>(`${this.urlApiCurso}/${id}`);
   }
-  //Función para buscar por nombre si es que existe
-  /*public findByTitle(nombre: any): Observable<any> {
-    return this.http.get<Curso>(`${this.urlApiCurso}?nombre=${nombre}`);
-  }*/
 
-    //------------ FUNCIÓN POST -------------------
-  public create(data: any): Observable<any> {
-    console.log(data);
-    return this.http.post(`${this.urlApiCurso}`, data, {responseType: 'text'}); //Estás especificando que la respuesta sea de tipo 'text', lo cual es útil si esperas una respuesta simple (como un mensaje o código de confirmación). Si en el futuro cambias esto, podrías ajustar a otro tipo (e.g., json).
+  //------------ FUNCIÓN POST -------------------
+  public create(curso: Curso): Observable<Curso> {
+    console.log(curso);
+    return this.http.post<Curso>(`${this.urlApiCurso}/add`, curso);
   }
 
   //----------- FUNCIÓN PUT --------------------
-  public update(id: any, data: Curso): Observable<any> {
-    const bodyData = {
-      "id": id,
-      "tema": data.tema,
-      "fechaInicio": data.fechaInicio,
-      "fechaFin": data.fechaFin,
-      "docente": data.docente,
-      "precio": data.precio,
-      "alumnos": data.alumnos //AL array de alumnos lo estás asignando desde data.alumnos y lo estás enviando en el cuerpo de la solicitud como parte de bodyData, por lo que no hay que declarar nada especial de tipo array
-    };
-
-    return this.http.put(`${this.urlApiCurso}`, bodyData, {responseType: 'text'});
+  public update(id: number, curso: Curso): Observable<Curso> {
+    return this.http.put<Curso>(`${this.urlApiCurso}/update/${id}`, curso);
   }
 
   //---------- FUNCIÓN DELETE ------------------
@@ -58,7 +46,12 @@ export class CursoService {
     return this.http.delete(this.urlApiCurso);
   }
   //Delete por id
-  public deleteById(id: any): Observable<any> {
-    return this.http.delete(`${this.urlApiCurso}/delete/${id}`, {responseType: 'text'});
+  public deleteById(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.urlApiCurso}/delete/${id}`);
   }
 }
+
+  //Función para buscar por nombre si es que existe
+  /*public findByTitle(nombre: any): Observable<any> {
+    return this.http.get<Curso>(`${this.urlApiCurso}?nombre=${nombre}`);
+  }*/

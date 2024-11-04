@@ -1,0 +1,21 @@
+<app-nav-header></app-nav-header>
+<div class="add-container">
+    <div class="form"> 
+        <!--
+        <div class="input-container">
+            <label for="id">Id</label>
+            <input class="input" name="id" id="id" type="number" (ngModel)="nuevoTema.id">
+        </div>
+        -->
+        <div class="input-container">
+            <label for="nombre">Nombre</label>
+            <input class="input" name="nombre" id="nombre" type="text" [(ngModel)]="nuevoTema.nombre">
+        </div>
+        <div class="input-container">
+            <label for="descripcion">Descripción</label>
+            <textarea class="input" name="descripcion" id="descripcion" [(ngModel)]="nuevoTema.descripcion"></textarea>
+        </div>
+        <button class="item-link" id="add-item" (click)="agregarTema()">Agregar tema</button>
+    </div>
+    <a class="item-link" id="back-item" routerLink="/temas">Volver</a>
+</div>
